@@ -371,7 +371,6 @@ export function DesafiosContent() {
                   const isCorrect = index === question.correctAnswer
                   const showResult = selectedAnswer !== null
 
-                  let buttonVariant: "outline" | "default" | "destructive" = "outline"
                   let buttonClass = ""
 
                   if (showResult) {
@@ -383,10 +382,12 @@ export function DesafiosContent() {
                   }
 
                   return (
-                    <Button
+                    <button
                       key={index}
-                      variant={buttonVariant}
-                      className={`w-full justify-start text-left h-auto py-4 px-4 ${buttonClass}`}
+                      className={`w-full text-left h-auto py-4 px-4 rounded-xl border-2 transition-colors font-medium text-sm
+                        ${buttonClass || "border-border bg-background hover:bg-muted/50"}
+                        ${selectedAnswer !== null ? "cursor-default" : "cursor-pointer active:scale-[0.99]"}
+                      `}
                       onClick={() => handleAnswer(index)}
                       disabled={selectedAnswer !== null}
                     >
@@ -394,7 +395,7 @@ export function DesafiosContent() {
                         <span className="flex items-center justify-center w-8 h-8 rounded-full bg-muted text-sm font-bold shrink-0">
                           {String.fromCharCode(65 + index)}
                         </span>
-                        <span className="flex-1">{option}</span>
+                        <span className="flex-1 whitespace-normal break-words text-left">{option}</span>
                         {showResult && isCorrect && (
                           <CheckCircle className="w-5 h-5 text-primary shrink-0" />
                         )}
@@ -402,7 +403,7 @@ export function DesafiosContent() {
                           <XCircle className="w-5 h-5 text-destructive shrink-0" />
                         )}
                       </span>
-                    </Button>
+                    </button>
                   )
                 })}
               </div>
