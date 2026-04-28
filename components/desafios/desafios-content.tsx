@@ -15,7 +15,9 @@ import {
   RotateCcw,
   Sparkles,
   Target,
-  Zap
+  Zap,
+  ClipboardList,
+  X
 } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { hasSupabaseEnv } from "@/lib/supabase/env"
@@ -309,7 +311,7 @@ export function DesafiosContent() {
               </CardContent>
             </Card>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <Button size="lg" onClick={startGame} className="gap-2">
                 <RotateCcw className="w-5 h-5" />
                 Jogar Novamente
@@ -317,6 +319,28 @@ export function DesafiosContent() {
               <Button size="lg" variant="outline" asChild>
                 <a href="/cartilha">Estudar na Cartilha</a>
               </Button>
+            </div>
+
+            {/* Popup CTA para Pesquisa */}
+            <div className="bg-orange-500/10 border-2 border-orange-400/40 rounded-2xl p-6 text-left">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl shrink-0">📋</div>
+                <div>
+                  <h3 className="font-bold text-lg text-foreground mb-1">
+                    Último passo: a Pesquisa!
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-4">
+                    Você estudou na cartilha e completou o desafio! Agora responda nossa pequena pesquisa e ajude a melhorar o TechKids. Leva só 2 minutos!
+                  </p>
+                  <a href="/pesquisa">
+                    <Button className="gap-2 bg-orange-500 hover:bg-orange-600 text-white border-0">
+                      <ClipboardList className="w-4 h-4" />
+                      Responder Pesquisa
+                      <ArrowRight className="w-4 h-4" />
+                    </Button>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
