@@ -13,7 +13,10 @@ import {
   CheckCircle,
   XCircle,
   ChevronRight,
-  BookOpen
+  BookOpen,
+  X,
+  Gamepad2,
+  ArrowRight
 } from "lucide-react"
 
 const sections = [
@@ -102,6 +105,7 @@ const sections = [
 
 export function CartilhaContent() {
   const [activeSection, setActiveSection] = useState(sections[0].id)
+  const [showPopup, setShowPopup] = useState(false)
 
   return (
     <div className="py-8 md:py-12">
@@ -274,11 +278,14 @@ export function CartilhaContent() {
                       const currentIndex = sections.findIndex((s) => s.id === activeSection)
                       if (currentIndex < sections.length - 1) {
                         setActiveSection(sections[currentIndex + 1].id)
+                      } else {
+                        setShowPopup(true)
                       }
                     }}
-                    disabled={sections.findIndex((s) => s.id === activeSection) === sections.length - 1}
                   >
-                    Próximo Capítulo →
+                    {sections.findIndex((s) => s.id === activeSection) < sections.length - 1
+                      ? "Próximo Capítulo →"
+                      : "Concluir Cartilha 🎉"}
                   </Button>
                 </div>
               </div>
@@ -286,6 +293,47 @@ export function CartilhaContent() {
           ))}
         </Tabs>
       </div>
+
+      {/* Popup Modal */}
+      {showPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="bg-card border-2 border-primary/30 rounded-3xl p-8 max-w-md w-full shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+            <button
+              onClick={() => setShowPopup(false)}
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="text-center">
+              <div className="text-6xl mb-4">🎉</div>
+              <h2 className="text-2xl font-bold text-foreground mb-2">
+                Parabéns! Você terminou a Cartilha!
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                Agora que você aprendeu tudo, que tal testar seus conhecimentos no <strong>Desafio TechKids</strong>?
+              </p>
+
+              <div className="flex flex-col gap-3">
+                <a href="/desafios" className="w-full">
+                  <Button className="w-full gap-2 text-base py-5 bg-primary hover:bg-primary/90">
+                    <Gamepad2 className="w-5 h-5" />
+                    Jogar Desafios agora!
+                    <ArrowRight className="w-5 h-5" />
+                  </Button>
+                </a>
+                <Button
+                  variant="ghost"
+                  className="text-muted-foreground text-sm"
+                  onClick={() => setShowPopup(false)}
+                >
+                  Continuar lendo a cartilha
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
