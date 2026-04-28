@@ -34,6 +34,9 @@ export function HeroSection() {
       { x: 0.45, y: 0.45, r: 40, color: "#16a34a", speedX: 0.14, speedY: -0.14, pulse: 0.8, pulseSpeed: 0.023 },
       { x: 0.15, y: 0.82, r: 70, color: "#ea580c", speedX: 0.12, speedY: -0.10, pulse: 1.8, pulseSpeed: 0.017 },
       { x: 0.62, y: 0.88, r: 45, color: "#7c3aed", speedX: -0.16, speedY: 0.12, pulse: 3.5, pulseSpeed: 0.021 },
+      { x: 0.30, y: 0.10, r: 80, color: "#7c3aed", speedX: 0.13, speedY: 0.11, pulse: 4.0, pulseSpeed: 0.018 },
+      { x: 0.75, y: 0.40, r: 55, color: "#16a34a", speedX: 0.17, speedY: -0.13, pulse: 1.2, pulseSpeed: 0.022 },
+      { x: 0.50, y: 0.85, r: 45, color: "#ea580c", speedX: -0.11, speedY: 0.15, pulse: 2.8, pulseSpeed: 0.020 },
     ].map(b => ({
       ...b,
       ax: b.x,
